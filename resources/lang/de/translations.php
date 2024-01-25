@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'breadcrumb' => 'Builder',
-    'title' => 'Builder',
-    'navigation_label' => 'Builder',
-    'navigation_group' => 'Builder Gruppe',
-    'totalone' => 'Builder Eins',
-    'totaltwo' => 'Builder Zwei',
-    'totalthree' => 'Builder Drei',
+    'breadcrumb' => 'BackupServerUi',
+    'title' => 'BackupServerUi',
+    'navigation_label' => 'BackupServerUi',
+    'navigation_group' => 'BackupServerUi Gruppe',
+    'totalone' => 'BackupServerUi Eins',
+    'totaltwo' => 'BackupServerUi Zwei',
+    'totalthree' => 'BackupServerUi Drei',
     'name' => 'Name',
     'started_at' => 'Gestartet',
     'failed' => 'failed',

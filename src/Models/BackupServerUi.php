@@ -1,12 +1,12 @@
 <?php
 
-namespace Moox\Builder\Models;
+namespace Moox\BackupServerUi\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Builder extends Model
+class BackupServerUi extends Model
 {
-    protected $table = 'builder';
+    protected $table = 'backup-server-ui';
 
     protected $fillable = [
         'name',

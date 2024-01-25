@@ -1,6 +1,6 @@
 <?php
 
-namespace Moox\Builder\Resources;
+namespace Moox\BackupServerUi\Resources;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
@@ -12,14 +12,14 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Moox\Builder\BuilderPlugin;
-use Moox\Builder\Models\Builder;
-use Moox\Builder\Resources\BuilderResource\Pages\ListPage;
-use Moox\Builder\Resources\BuilderResource\Widgets\BuilderWidgets;
+use Moox\BackupServerUi\BackupServerUiPlugin;
+use Moox\BackupServerUi\Models\BackupServerUi;
+use Moox\BackupServerUi\Resources\BackupServerUiResource\Pages\ListPage;
+use Moox\BackupServerUi\Resources\BackupServerUiResource\Widgets\BackupServerUiWidgets;
 
-class BuilderResource extends Resource
+class BackupServerUiResource extends Resource
 {
-    protected static ?string $model = Builder::class;
+    protected static ?string $model = BackupServerUi::class;
 
     public static function form(Form $form): Form
     {
@@ -39,14 +39,14 @@ class BuilderResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label(__('builder::translations.name'))
+                    ->label(__('backup-server-ui::translations.name'))
                     ->sortable(),
                 TextColumn::make('started_at')
-                    ->label(__('builder::translations.started_at'))
+                    ->label(__('backup-server-ui::translations.started_at'))
                     ->since()
                     ->sortable(),
                 TextColumn::make('failed')
-                    ->label(__('builder::translations.failed'))
+                    ->label(__('backup-server-ui::translations.failed'))
                     ->sortable(),
             ])
             ->defaultSort('name', 'desc')
@@ -75,23 +75,23 @@ class BuilderResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            BuilderWidgets::class,
+            BackupServerUiWidgets::class,
         ];
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return BuilderPlugin::make()->getNavigationCountBadge() ? number_format(static::getModel()::count()) : null;
+        return BackupServerUiPlugin::make()->getNavigationCountBadge() ? number_format(static::getModel()::count()) : null;
     }
 
     public static function getModelLabel(): string
     {
-        return BuilderPlugin::make()->getLabel();
+        return BackupServerUiPlugin::make()->getLabel();
     }
 
     public static function getPluralModelLabel(): string
     {
-        return BuilderPlugin::make()->getPluralLabel();
+        return BackupServerUiPlugin::make()->getPluralLabel();
     }
 
     public static function getNavigationLabel(): string
@@ -101,26 +101,26 @@ class BuilderResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return BuilderPlugin::make()->getNavigationGroup();
+        return BackupServerUiPlugin::make()->getNavigationGroup();
     }
 
     public static function getNavigationSort(): ?int
     {
-        return BuilderPlugin::make()->getNavigationSort();
+        return BackupServerUiPlugin::make()->getNavigationSort();
     }
 
     public static function getBreadcrumb(): string
     {
-        return BuilderPlugin::make()->getBreadcrumb();
+        return BackupServerUiPlugin::make()->getBreadcrumb();
     }
 
     public static function shouldRegisterNavigation(): bool
     {
-        return BuilderPlugin::make()->shouldRegisterNavigation();
+        return BackupServerUiPlugin::make()->shouldRegisterNavigation();
     }
 
     public static function getNavigationIcon(): string
     {
-        return BuilderPlugin::make()->getNavigationIcon();
+        return BackupServerUiPlugin::make()->getNavigationIcon();
     }
 }

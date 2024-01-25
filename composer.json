@@ -1,6 +1,6 @@
 {
-    "name": "moox/builder",
-    "description": "This template is used for generating all Moox packages.",
+    "name": "moox/backup-server-ui",
+    "description": "Filament UI for Spatie Laravel Backup Server.",
     "keywords": [
         "Laravel",
         "Filament",
@@ -22,13 +22,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Moox\\Builder\\": "src"
+            "Moox\\BackupServerUi\\": "src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Moox\\Builder\\BuilderServiceProvider"
+                "Moox\\BackupServerUi\\BackupServerUiServiceProvider"
             ]
         }
     },

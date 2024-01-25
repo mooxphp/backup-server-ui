@@ -1,13 +1,13 @@
 <?php
 
-namespace Moox\Builder;
+namespace Moox\BackupServerUi;
 
 use Closure;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
 
-class BuilderPlugin implements Plugin
+class BackupServerUiPlugin implements Plugin
 {
     use EvaluatesClosures;
 
@@ -66,7 +66,7 @@ class BuilderPlugin implements Plugin
      */
     public function getId(): string
     {
-        return 'builder';
+        return 'backup-server-ui';
     }
 
     /**
@@ -100,7 +100,7 @@ class BuilderPlugin implements Plugin
      */
     public function getResource(): string
     {
-        return $this->resource ?? config('builder.resources.builder.resource');
+        return $this->resource ?? config('backup-server-ui.resources.backup-server-ui.resource');
     }
 
     /**
@@ -118,7 +118,7 @@ class BuilderPlugin implements Plugin
      */
     public function getLabel(): ?string
     {
-        return $this->evaluate($this->label) ?? config('builder.resources.builder.label');
+        return $this->evaluate($this->label) ?? config('backup-server-ui.resources.backup-server-ui.label');
     }
 
     /**
@@ -136,7 +136,7 @@ class BuilderPlugin implements Plugin
      */
     public function getPluralLabel(): ?string
     {
-        return $this->evaluate($this->pluralLabel) ?? config('builder.resources.builder.plural_label');
+        return $this->evaluate($this->pluralLabel) ?? config('backup-server-ui.resources.backup-server-ui.plural_label');
     }
 
     /**
@@ -154,7 +154,7 @@ class BuilderPlugin implements Plugin
      */
     public function getNavigationGroup(): ?string
     {
-        return $this->navigationGroup ?? config('builder.resources.builder.navigation_group');
+        return $this->navigationGroup ?? config('backup-server-ui.resources.backup-server-ui.navigation_group');
     }
 
     /**
@@ -172,7 +172,7 @@ class BuilderPlugin implements Plugin
      */
     public function getNavigationIcon(): ?string
     {
-        return $this->navigationIcon ?? config('builder.resources.builder.navigation_icon');
+        return $this->navigationIcon ?? config('backup-server-ui.resources.backup-server-ui.navigation_icon');
     }
 
     /**
@@ -190,7 +190,7 @@ class BuilderPlugin implements Plugin
      */
     public function getNavigationSort(): ?int
     {
-        return $this->navigationSort ?? config('builder.resources.builder.navigation_sort');
+        return $this->navigationSort ?? config('backup-server-ui.resources.backup-server-ui.navigation_sort');
     }
 
     /**
@@ -208,7 +208,7 @@ class BuilderPlugin implements Plugin
      */
     public function getNavigationCountBadge(): ?bool
     {
-        return $this->navigationCountBadge ?? config('builder.resources.builder.navigation_count_badge');
+        return $this->navigationCountBadge ?? config('backup-server-ui.resources.backup-server-ui.navigation_count_badge');
     }
 
     /**
@@ -226,7 +226,7 @@ class BuilderPlugin implements Plugin
      */
     public function shouldRegisterNavigation(): bool
     {
-        return $this->navigation ?? config('builder.resources.builder.enabled');
+        return $this->navigation ?? config('backup-server-ui.resources.backup-server-ui.enabled');
     }
 
     /**
@@ -244,6 +244,6 @@ class BuilderPlugin implements Plugin
      */
     public function getBreadcrumb(): string
     {
-        return __('builder::translations.breadcrumb');
+        return __('backup-server-ui::translations.breadcrumb');
     }
 }

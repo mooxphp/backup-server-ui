@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Moox\Builder;
+namespace Moox\BackupServerUi;
 
-use Moox\Builder\Commands\InstallCommand;
+use Moox\BackupServerUi\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class BuilderServiceProvider extends PackageServiceProvider
+class BackupServerUiServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('builder')
+            ->name('backup-server-ui')
             ->hasConfigFile()
             ->hasViews()
             ->hasTranslations()
-            ->hasMigration('create_builder_table')
+            ->hasMigration('create_backup-server-ui_table')
             ->hasCommand(InstallCommand::class);
     }
 }
