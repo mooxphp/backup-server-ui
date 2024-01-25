@@ -1,6 +1,6 @@
 ![Moox BackupServerUi](https://github.com/mooxphp/moox/raw/main/_other/art/banner/backup-server-ui.jpg)
 
-# Moox BackupServerUi
+# Moox BackupServer UI
 
 Filament UI for Spatie Laravel Backup Server. Needs a license key for the paid package from https://spatie.be.
 
