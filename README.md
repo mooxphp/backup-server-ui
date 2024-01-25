@@ -28,13 +28,11 @@ Filament UI for Spatie Laravel Backup Server.
 Instead of using the install-command `php artisan mooxbackup-server-ui:install` you are able to install this package manually step by step:
 
 ```bash
-// Publish and run the migrations:
-php artisan vendor:publish --tag="backup-server-ui-migrations"
-php artisan migrate
-
 // Publish the config file with:
 php artisan vendor:publish --tag="backup-server-ui-config"
 ```
+
+Register the Plugins in FilamentAdminPanelProvider.
 
 ## Changelog
 
