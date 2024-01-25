@@ -17,7 +17,6 @@ class BackupServerUiServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasTranslations()
-            ->hasMigration('create_backup-server-ui_table')
             ->hasCommand(InstallCommand::class);
     }
 }

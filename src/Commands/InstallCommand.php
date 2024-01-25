@@ -4,14 +4,12 @@ namespace Moox\BackupServerUi\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Schema;
 
 use function Laravel\Prompts\alert;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\note;
-use function Laravel\Prompts\warning;
 
 class InstallCommand extends Command
 {
@@ -77,24 +75,6 @@ class InstallCommand extends Command
         }
     }
 
-    public function publish_migrations(): void
-    {
-        if (Schema::hasTable('backup-server-ui')) {
-            warning('The backup-server-ui table already exists. The migrations will not be published.');
-        } elseif (confirm('Do you wish to publish the migrations?', true)) {
-            info('Publishing BackupServerUi Migrations...');
-            $this->callSilent('vendor:publish', ['--tag' => 'backup-server-ui-migrations']);
-        }
-    }
-
-    public function run_migrations(): void
-    {
-        if (confirm('Do you wish to run the migrations?', true)) {
-            info('Running BackupServerUi Migrations...');
-            $this->call('migrate');
-        }
-    }
-
     public function register_plugins(): void
     {
         note('Registering the Filament Resources...');
@@ -111,8 +91,8 @@ class InstallCommand extends Command
 
             $pluginsToAdd = multiselect(
                 label: 'These plugins will be installed:',
-                options: ['BackupServerUiPlugin'],
-                default: ['BackupServerUiPlugin'],
+                options: ['BackupLogItemPlugin', 'BackupPlugin', 'DestinationPlugin', 'SourcePlugin'],
+                default: ['BackupLogItemPlugin', 'BackupPlugin', 'DestinationPlugin', 'SourcePlugin'],
             );
 
             $function = '::make(),';

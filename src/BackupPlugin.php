@@ -7,7 +7,7 @@ use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
 
-class BackupServerUiPlugin implements Plugin
+class BackupPlugin implements Plugin
 {
     use EvaluatesClosures;
 
