@@ -1,6 +1,6 @@
 ![Moox BackupServerUi](https://github.com/mooxphp/moox/raw/main/_other/art/banner/backup-server-ui.jpg)
 
-# Moox BackupServer UI
+# Moox BackupServerUi
 
 Filament UI for Spatie Laravel Backup Server. Needs a license key for the paid package from https://spatie.be.
 
@@ -28,11 +28,13 @@ Filament UI for Spatie Laravel Backup Server.
 Instead of using the install-command `php artisan mooxbackup-server-ui:install` you are able to install this package manually step by step:
 
 ```bash
+// Publish and run the migrations:
+php artisan vendor:publish --tag="backup-server-ui-migrations"
+php artisan migrate
+
 // Publish the config file with:
 php artisan vendor:publish --tag="backup-server-ui-config"
 ```
-
-Register the Plugins in FilamentAdminPanelProvider.
 
 ## Changelog
 

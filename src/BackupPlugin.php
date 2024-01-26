@@ -162,7 +162,7 @@ class BackupPlugin implements Plugin
      */
     public function navigationGroup(string $navigationGroup): static
     {
-        $this->navigationGroup = $navigationGroup;
+        $this->navigationGroup = 'Blah';
 
         return $this;
     }

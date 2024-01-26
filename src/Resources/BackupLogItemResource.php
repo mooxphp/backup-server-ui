@@ -11,7 +11,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -140,7 +139,7 @@ class BackupLogItemResource extends Resource
                     ->multiple()
                     ->label('Backup'),
             ])
-            ->actions([ViewAction::make(), EditAction::make()])
+            ->actions([ViewAction::make()])
             ->bulkActions([DeleteBulkAction::make()]);
     }
 
@@ -153,7 +152,6 @@ class BackupLogItemResource extends Resource
     {
         return [
             'index' => Pages\ListBackupLogItems::route('/'),
-            'create' => Pages\CreateBackupLogItem::route('/create'),
             'view' => Pages\ViewBackupLogItem::route('/{record}'),
             'edit' => Pages\EditBackupLogItem::route('/{record}/edit'),
         ];
