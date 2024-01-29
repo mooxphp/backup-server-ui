@@ -16,7 +16,6 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Moox\BackupServerUi\Resources\SourceResource\Pages;
-use Moox\BackupServerUi\Resources\SourceResource\RelationManagers\BackupLogItemsRelationManager;
 use Moox\BackupServerUi\Resources\SourceResource\RelationManagers\BackupsRelationManager;
 use Spatie\BackupServer\Models\Source;
 
@@ -353,7 +352,7 @@ class SourceResource extends Resource
     {
         return [
             BackupsRelationManager::class,
-            BackupLogItemsRelationManager::class,
+            // BackupLogItemsRelationManager::class,
         ];
     }
 

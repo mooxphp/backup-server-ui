@@ -14,7 +14,6 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Table;
 use Moox\BackupServerUi\Resources\DestinationResource\Pages;
 use Moox\BackupServerUi\Resources\DestinationResource\RelationManagers\BackupsRelationManager;
-use Moox\BackupServerUi\Resources\DestinationResource\RelationManagers\SourcesRelationManager;
 use Spatie\BackupServer\Models\Destination;
 
 class DestinationResource extends Resource
@@ -250,7 +249,7 @@ class DestinationResource extends Resource
     {
         return [
             BackupsRelationManager::class,
-            SourcesRelationManager::class,
+            // SourcesRelationManager::class,
         ];
     }
 

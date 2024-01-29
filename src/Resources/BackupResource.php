@@ -17,7 +17,6 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Moox\BackupServerUi\Resources\BackupResource\Pages;
-use Moox\BackupServerUi\Resources\BackupResource\RelationManagers\BackupLogItemsRelationManager;
 use Spatie\BackupServer\Models\Backup;
 
 class BackupResource extends Resource
@@ -239,7 +238,7 @@ class BackupResource extends Resource
     public static function getRelations(): array
     {
         return [
-            BackupLogItemsRelationManager::class,
+            // BackupLogItemsRelationManager::class,
         ];
     }
 
