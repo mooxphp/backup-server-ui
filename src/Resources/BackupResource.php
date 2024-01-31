@@ -23,9 +23,17 @@ class BackupResource extends Resource
 {
     protected static ?string $model = Backup::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-lifebuoy';
 
-    protected static ?string $recordTitleAttribute = 'status';
+    protected static ?string $navigationLabel = 'Backup';
+
+    protected static ?string $pluralNavigationLabel = 'Backups';
+
+    protected static ?string $navigationGroup = 'Backup server';
+
+    protected static ?int $priority = 1;
+
+    protected static ?string $recordTitleAttribute = 'source.name';
 
     public static function form(Form $form): Form
     {

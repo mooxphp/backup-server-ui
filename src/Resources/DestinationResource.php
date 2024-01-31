@@ -20,7 +20,15 @@ class DestinationResource extends Resource
 {
     protected static ?string $model = Destination::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-arrow-right-end-on-rectangle';
+
+    protected static ?string $navigationLabel = 'Destination';
+
+    protected static ?string $pluralNavigationLabel = 'Destinations';
+
+    protected static ?string $navigationGroup = 'Backup server';
+
+    protected static ?int $priority = 3;
 
     protected static ?string $recordTitleAttribute = 'name';
 

@@ -21,7 +21,15 @@ class BackupLogItemResource extends Resource
 {
     protected static ?string $model = BackupLogItem::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-bars-4';
+
+    protected static ?string $navigationLabel = 'Backup Log';
+
+    protected static ?string $pluralNavigationLabel = 'Backup Logs';
+
+    protected static ?string $navigationGroup = 'Backup server';
+
+    protected static ?int $priority = 4;
 
     protected static ?string $recordTitleAttribute = 'task';
 

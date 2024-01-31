@@ -23,7 +23,15 @@ class SourceResource extends Resource
 {
     protected static ?string $model = Source::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-arrow-right-start-on-rectangle';
+
+    protected static ?string $navigationLabel = 'Source';
+
+    protected static ?string $pluralNavigationLabel = 'Sources';
+
+    protected static ?string $navigationGroup = 'Backup server';
+
+    protected static ?int $priority = 2;
 
     protected static ?string $recordTitleAttribute = 'name';
 
