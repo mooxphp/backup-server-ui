@@ -7,10 +7,11 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Moox\BackupServerUi\Resources\DestinationResource\Pages;
 use Moox\BackupServerUi\Resources\DestinationResource\RelationManagers\BackupsRelationManager;
@@ -196,40 +197,46 @@ class DestinationResource extends Resource
         return $table
             ->poll('60s')
             ->columns([
-                Tables\Columns\TextColumn::make('status')
-                    ->label('Status')
-                    ->toggleable()
-                    ->searchable()
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('name')
+                IconColumn::make('status')
+                    ->icon(fn (string $state): string => match ($state) {
+                        '' => 'heroicon-o-question-mark-circle',
+                        'active' => 'heroicon-o-play',
+                        'deleting' => 'heroicon-o-trash',
+                    })
+                    ->colors([
+                        'secondary',
+                        'warning' => 'deleting',
+                        'success' => 'active',
+                    ]),
+                TextColumn::make('name')
                     ->label('Destination')
                     ->toggleable()
                     ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('disk_name')
+                TextColumn::make('disk_name')
                     ->label('Disk')
                     ->toggleable()
                     ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('keep_all_backups_for_days')
+                TextColumn::make('keep_all_backups_for_days')
                     ->label('Keep all')
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('keep_daily_backups_for_days')
+                TextColumn::make('keep_daily_backups_for_days')
                     ->label('Keep days')
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('keep_weekly_backups_for_weeks')
+                TextColumn::make('keep_weekly_backups_for_weeks')
                     ->label('Keep weeks')
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('keep_monthly_backups_for_months')
+                TextColumn::make('keep_monthly_backups_for_months')
                     ->label('Keep months')
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('keep_yearly_backups_for_years')
+                TextColumn::make('keep_yearly_backups_for_years')
                     ->label('Keep years')
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('delete_oldest_backups_when_using_more_megabytes_than')
+                TextColumn::make('delete_oldest_backups_when_using_more_megabytes_than')
                     ->label('Delete max MB')
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('healthy_maximum_backup_age_in_days_per_source')
+                TextColumn::make('healthy_maximum_backup_age_in_days_per_source')
                     ->label('Healthy age')
                     ->toggleable(),
             ])

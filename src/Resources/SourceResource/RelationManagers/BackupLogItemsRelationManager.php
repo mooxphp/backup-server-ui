@@ -14,6 +14,7 @@ use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -82,12 +83,12 @@ class BackupLogItemsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('source.name')->limit(50),
-                Tables\Columns\TextColumn::make('backup.status')->limit(50),
-                Tables\Columns\TextColumn::make('destination_id')->limit(50),
-                Tables\Columns\TextColumn::make('task')->limit(50),
-                Tables\Columns\TextColumn::make('level')->limit(50),
-                Tables\Columns\TextColumn::make('message')->limit(50),
+                TextColumn::make('source.name')->limit(50),
+                TextColumn::make('backup.status')->limit(50),
+                TextColumn::make('destination_id')->limit(50),
+                TextColumn::make('task')->limit(50),
+                TextColumn::make('level')->limit(50),
+                TextColumn::make('message')->limit(50),
             ])
             ->filters([
                 Tables\Filters\Filter::make('created_at')

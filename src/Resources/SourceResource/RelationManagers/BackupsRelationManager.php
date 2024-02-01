@@ -15,6 +15,7 @@ use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -139,22 +140,22 @@ class BackupsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('status')->limit(50),
-                Tables\Columns\TextColumn::make('source.name')->limit(50),
-                Tables\Columns\TextColumn::make('destination.name')->limit(50),
-                Tables\Columns\TextColumn::make('disk_name')->limit(50),
-                Tables\Columns\TextColumn::make('path')->limit(50),
-                Tables\Columns\TextColumn::make('size_in_kb')->limit(50),
-                Tables\Columns\TextColumn::make('real_size_in_kb')->limit(50),
-                Tables\Columns\TextColumn::make('completed_at')->date(),
-                Tables\Columns\TextColumn::make('rsync_summary')->limit(50),
-                Tables\Columns\TextColumn::make('rsync_time_in_seconds')->limit(
+                TextColumn::make('status')->limit(50),
+                TextColumn::make('source.name')->limit(50),
+                TextColumn::make('destination.name')->limit(50),
+                TextColumn::make('disk_name')->limit(50),
+                TextColumn::make('path')->limit(50),
+                TextColumn::make('size_in_kb')->limit(50),
+                TextColumn::make('real_size_in_kb')->limit(50),
+                TextColumn::make('completed_at')->date(),
+                TextColumn::make('rsync_summary')->limit(50),
+                TextColumn::make('rsync_time_in_seconds')->limit(
                     50
                 ),
-                Tables\Columns\TextColumn::make(
+                TextColumn::make(
                     'rsync_current_transfer_speed'
                 )->limit(50),
-                Tables\Columns\TextColumn::make(
+                TextColumn::make(
                     'rsync_average_transfer_speed_in_MB_per_second'
                 )->limit(50),
             ])

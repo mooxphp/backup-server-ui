@@ -9,9 +9,10 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Moox\BackupServerUi\Models\BackupLogItem;
@@ -109,29 +110,49 @@ class BackupLogItemResource extends Resource
         return $table
             ->poll('60s')
             ->columns([
-                Tables\Columns\TextColumn::make('source.name')
-                    ->toggleable()
-                    ->searchable()
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('backup.status')
+                IconColumn::make('backup.status')
                     ->label('Status')
-                    ->searchable()
+                    ->icon(fn (string $state): string => match ($state) {
+                        'heroicon-o-question-mark-circle',
+                        'failed' => 'heroicon-o-x-circle',
+                        'completed' => 'heroicon-o-check-circle',
+                        'pending' => 'heroicon-o-play',
+                    })
+                    ->colors([
+                        'secondary',
+                        'danger' => 'failed',
+                        'warning' => 'pending',
+                        'success' => 'completed',
+                    ]),
+                TextColumn::make('source.name')
+                    ->label('Source')
                     ->toggleable()
+                    ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('destination.name')
+                TextColumn::make('destination.name')
                     ->label('Destination')
                     ->searchable()
                     ->toggleable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('task')
+                TextColumn::make('task')
                     ->toggleable()
                     ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('level')
-                    ->toggleable()
-                    ->searchable()
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('message')
+                IconColumn::make('level')
+                    ->label('Level')
+                    ->icon(fn (string $state): string => match ($state) {
+                        'heroicon-o-question-mark-circle',
+                        'error' => 'heroicon-o-exclamation-circle',
+                        'warning' => 'heroicon-o-question-mark-circle',
+                        'info' => 'heroicon-o-information-circle',
+                    })
+                    ->colors([
+                        'secondary',
+                        'danger' => 'error',
+                        'warning' => 'warning',
+                        'success' => 'info',
+                    ]),
+                TextColumn::make('message')
                     ->toggleable()
                     ->searchable()
                     ->limit(50),

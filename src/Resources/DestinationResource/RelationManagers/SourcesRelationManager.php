@@ -13,6 +13,7 @@ use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -224,38 +225,38 @@ class SourcesRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('status')->limit(50),
-                Tables\Columns\TextColumn::make('healthy')->limit(50),
-                Tables\Columns\TextColumn::make('name')->limit(50),
-                Tables\Columns\TextColumn::make('host')->limit(50),
-                Tables\Columns\TextColumn::make('ssh_user')->limit(50),
-                Tables\Columns\TextColumn::make('ssh_port'),
-                Tables\Columns\TextColumn::make('ssh_private_key_file')->limit(
+                TextColumn::make('status')->limit(50),
+                TextColumn::make('healthy')->limit(50),
+                TextColumn::make('name')->limit(50),
+                TextColumn::make('host')->limit(50),
+                TextColumn::make('ssh_user')->limit(50),
+                TextColumn::make('ssh_port'),
+                TextColumn::make('ssh_private_key_file')->limit(
                     50
                 ),
-                Tables\Columns\TextColumn::make('cron_expression')->limit(50),
-                Tables\Columns\TextColumn::make('destination.name')->limit(50),
-                Tables\Columns\TextColumn::make(
+                TextColumn::make('cron_expression')->limit(50),
+                TextColumn::make('destination.name')->limit(50),
+                TextColumn::make(
                     'cleanup_strategy_class'
                 )->limit(50),
-                Tables\Columns\TextColumn::make('keep_all_backups_for_days'),
-                Tables\Columns\TextColumn::make('keep_daily_backups_for_days'),
-                Tables\Columns\TextColumn::make(
+                TextColumn::make('keep_all_backups_for_days'),
+                TextColumn::make('keep_daily_backups_for_days'),
+                TextColumn::make(
                     'keep_weekly_backups_for_weeks'
                 ),
-                Tables\Columns\TextColumn::make(
+                TextColumn::make(
                     'keep_monthly_backups_for_months'
                 ),
-                Tables\Columns\TextColumn::make(
+                TextColumn::make(
                     'keep_yearly_backups_for_years'
                 ),
-                Tables\Columns\TextColumn::make(
+                TextColumn::make(
                     'delete_oldest_backups_when_using_more_megabytes_than'
                 ),
-                Tables\Columns\TextColumn::make(
+                TextColumn::make(
                     'healthy_maximum_backup_age_in_days'
                 ),
-                Tables\Columns\TextColumn::make(
+                TextColumn::make(
                     'healthy_maximum_storage_in_mb'
                 ),
             ])

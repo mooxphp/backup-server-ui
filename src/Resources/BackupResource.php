@@ -10,10 +10,10 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Moox\BackupServerUi\Resources\BackupResource\Pages;
@@ -177,7 +177,7 @@ class BackupResource extends Resource
         return $table
             ->poll('60s')
             ->columns([
-                Tables\Columns\TextColumn::make('status')
+                TextColumn::make('status')
                     ->label('Status')
                     ->toggleable()
                     ->searchable()
@@ -191,43 +191,43 @@ class BackupResource extends Resource
                         'pending' => 'warning',
                         default => 'secondary',
                     }),
-                Tables\Columns\TextColumn::make('source.name')
+                TextColumn::make('source.name')
                     ->label('Source')
                     ->toggleable()
                     ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('destination.name')
+                TextColumn::make('destination.name')
                     ->label('Destination')
                     ->toggleable()
                     ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('disk_name')
+                TextColumn::make('disk_name')
                     ->label('Disk')
                     ->toggleable()
                     ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('path')
+                TextColumn::make('path')
                     ->label('Path')
                     ->toggleable()
                     ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('size_in_kb')
+                TextColumn::make('size_in_kb')
                     ->label('Size')
                     ->toggleable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('real_size_in_kb')
+                TextColumn::make('real_size_in_kb')
                     ->label('Real Size')
                     ->toggleable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('completed_at')
+                TextColumn::make('completed_at')
                     ->label('Completed')
                     ->toggleable()
                     ->date(),
-                Tables\Columns\TextColumn::make('rsync_time_in_seconds')
+                TextColumn::make('rsync_time_in_seconds')
                     ->label('Rsync Time')
                     ->toggleable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('rsync_average_transfer_speed_in_MB_per_second')
+                TextColumn::make('rsync_average_transfer_speed_in_MB_per_second')
                     ->label('Rsync Speed')
                     ->toggleable()
                     ->limit(50),
