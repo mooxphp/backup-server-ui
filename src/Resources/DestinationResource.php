@@ -200,7 +200,7 @@ class DestinationResource extends Resource
                 IconColumn::make('status')
                     ->icon(fn (string $state): string => match ($state) {
                         '' => 'heroicon-o-question-mark-circle',
-                        'active' => 'heroicon-o-play',
+                        'active' => 'heroicon-o-hand-thumb-up',
                         'deleting' => 'heroicon-o-trash',
                     })
                     ->colors([
@@ -232,12 +232,6 @@ class DestinationResource extends Resource
                     ->toggleable(),
                 TextColumn::make('keep_yearly_backups_for_years')
                     ->label('Keep years')
-                    ->toggleable(),
-                TextColumn::make('delete_oldest_backups_when_using_more_megabytes_than')
-                    ->label('Delete max MB')
-                    ->toggleable(),
-                TextColumn::make('healthy_maximum_backup_age_in_days_per_source')
-                    ->label('Healthy age')
                     ->toggleable(),
             ])
             ->actions([ViewAction::make(), EditAction::make()])

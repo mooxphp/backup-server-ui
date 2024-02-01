@@ -280,7 +280,7 @@ class SourceResource extends Resource
                 IconColumn::make('status')
                     ->icon(fn (string $state): string => match ($state) {
                         '' => 'heroicon-o-question-mark-circle',
-                        'active' => 'heroicon-o-play',
+                        'active' => 'heroicon-o-hand-thumb-up',
                         'deleting' => 'heroicon-o-trash',
                     })
                     ->colors([
@@ -315,26 +315,6 @@ class SourceResource extends Resource
                     ->toggleable()
                     ->searchable()
                     ->limit(50),
-                TextColumn::make('cleanup_strategy_class')
-                    ->label('Cleanup')
-                    ->toggleable()
-                    ->searchable()
-                    ->limit(50),
-                TextColumn::make('keep_all_backups_for_days')
-                    ->label('Keep all')
-                    ->toggleable(),
-                TextColumn::make('keep_daily_backups_for_days')
-                    ->label('Keep days')
-                    ->toggleable(),
-                TextColumn::make('keep_weekly_backups_for_weeks')
-                    ->label('Keep weeks')
-                    ->toggleable(),
-                TextColumn::make('keep_monthly_backups_for_months')
-                    ->label('Keep months')
-                    ->toggleable(),
-                TextColumn::make('keep_yearly_backups_for_years')
-                    ->label('Keep years')
-                    ->toggleable(),
             ])
             ->filters([
                 SelectFilter::make('destination_id')
