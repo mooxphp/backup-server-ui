@@ -197,57 +197,41 @@ class DestinationResource extends Resource
             ->poll('60s')
             ->columns([
                 Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
                     ->toggleable()
-                    ->searchable(true, null, true)
+                    ->searchable()
                     ->limit(50),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Destination')
                     ->toggleable()
-                    ->searchable(true, null, true)
+                    ->searchable()
                     ->limit(50),
                 Tables\Columns\TextColumn::make('disk_name')
+                    ->label('Disk')
                     ->toggleable()
-                    ->searchable(true, null, true)
+                    ->searchable()
                     ->limit(50),
                 Tables\Columns\TextColumn::make('keep_all_backups_for_days')
-                    ->toggleable()
-                    ->searchable(true, null, true),
+                    ->label('Keep all')
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('keep_daily_backups_for_days')
-                    ->toggleable()
-                    ->searchable(true, null, true),
+                    ->label('Keep days')
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('keep_weekly_backups_for_weeks')
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make(
-                    'keep_monthly_backups_for_months'
-                )
-                    ->toggleable()
-                    ->searchable(true, null, true),
+                    ->label('Keep weeks')
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('keep_monthly_backups_for_months')
+                    ->label('Keep months')
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('keep_yearly_backups_for_years')
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make(
-                    'delete_oldest_backups_when_using_more_megabytes_than'
-                )
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make(
-                    'healthy_maximum_backup_age_in_days_per_source'
-                )
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make(
-                    'healthy_maximum_storage_in_mb_per_source'
-                )
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make('healthy_maximum_storage_in_mb')
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make(
-                    'healthy_maximum_inode_usage_percentage'
-                )
-                    ->toggleable()
-                    ->searchable(true, null, true),
+                    ->label('Keep years')
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('delete_oldest_backups_when_using_more_megabytes_than')
+                    ->label('Delete max MB')
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('healthy_maximum_backup_age_in_days_per_source')
+                    ->label('Healthy age')
+                    ->toggleable(),
             ])
             ->actions([ViewAction::make(), EditAction::make()])
             ->bulkActions([DeleteBulkAction::make()]);

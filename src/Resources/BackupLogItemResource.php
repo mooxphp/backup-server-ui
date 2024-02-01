@@ -14,8 +14,8 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Moox\BackupServerUi\Models\BackupLogItem;
 use Moox\BackupServerUi\Resources\BackupLogItemResource\Pages;
-use Spatie\BackupServer\Models\BackupLogItem;
 
 class BackupLogItemResource extends Resource
 {
@@ -31,8 +31,6 @@ class BackupLogItemResource extends Resource
 
     protected static ?int $priority = 4;
 
-    protected static ?string $recordTitleAttribute = 'task';
-
     public static function form(Form $form): Form
     {
         return $form->schema([
@@ -42,7 +40,6 @@ class BackupLogItemResource extends Resource
                         ->rules(['exists:backup_server_sources,id'])
                         ->required()
                         ->relationship('source', 'name')
-                        ->searchable()
                         ->placeholder('Source')
                         ->columnSpan([
                             'default' => 12,
@@ -54,18 +51,19 @@ class BackupLogItemResource extends Resource
                         ->rules(['exists:backup_server_backups,id'])
                         ->required()
                         ->relationship('backup', 'status')
-                        ->searchable()
-                        ->placeholder('Backup')
+                        ->placeholder('Status')
+                        ->label('Status')
                         ->columnSpan([
                             'default' => 12,
                             'md' => 12,
                             'lg' => 12,
                         ]),
 
-                    TextInput::make('destination_id')
-                        ->rules(['max:255'])
+                    Select::make('destination_id')
+                        ->rules(['exists:backup_server_destinations,id'])
                         ->required()
-                        ->placeholder('Destination Id')
+                        ->relationship('destination', 'name')
+                        ->placeholder('Destination')
                         ->columnSpan([
                             'default' => 12,
                             'md' => 12,
@@ -113,21 +111,25 @@ class BackupLogItemResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('source.name')
                     ->toggleable()
+                    ->searchable()
                     ->limit(50),
                 Tables\Columns\TextColumn::make('backup.status')
+                    ->label('Status')
+                    ->searchable()
                     ->toggleable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('destination_id')
+                Tables\Columns\TextColumn::make('destination.name')
+                    ->label('Destination')
+                    ->searchable()
                     ->toggleable()
-                    ->searchable(true, null, true)
                     ->limit(50),
                 Tables\Columns\TextColumn::make('task')
                     ->toggleable()
-                    ->searchable(true, null, true)
+                    ->searchable()
                     ->limit(50),
                 Tables\Columns\TextColumn::make('level')
                     ->toggleable()
-                    ->searchable(true, null, true)
+                    ->searchable()
                     ->limit(50),
                 Tables\Columns\TextColumn::make('message')
                     ->toggleable()
@@ -137,15 +139,34 @@ class BackupLogItemResource extends Resource
             ->filters([
                 SelectFilter::make('source_id')
                     ->relationship('source', 'name')
-                    ->indicator('Source')
                     ->multiple()
+                    ->searchable()
+                    ->preload()
                     ->label('Source'),
 
-                SelectFilter::make('backup_id')
-                    ->relationship('backup', 'status')
-                    ->indicator('Backup')
+                SelectFilter::make('destination_id')
+                    ->relationship('destination', 'name')
                     ->multiple()
-                    ->label('Backup'),
+                    ->searchable()
+                    ->preload()
+                    ->label('Destination'),
+
+                SelectFilter::make('task')
+                    ->options([
+                        'backup' => 'Backup',
+                        'cleanup' => 'Cleanup',
+                        'prune' => 'Prune',
+                        'monitor' => 'Monitor',
+                    ])
+                    ->label('Task'),
+
+                SelectFilter::make('level')
+                    ->options([
+                        'info' => 'Info',
+                        'warning' => 'Warning',
+                        'error' => 'Error',
+                    ])
+                    ->label('Level'),
             ])
             ->actions([ViewAction::make()])
             ->bulkActions([DeleteBulkAction::make()]);
@@ -161,7 +182,6 @@ class BackupLogItemResource extends Resource
         return [
             'index' => Pages\ListBackupLogItems::route('/'),
             'view' => Pages\ViewBackupLogItem::route('/{record}'),
-            'edit' => Pages\EditBackupLogItem::route('/{record}/edit'),
         ];
     }
 }

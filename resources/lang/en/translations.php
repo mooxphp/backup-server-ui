@@ -10,5 +10,7 @@ return [
     'totalthree' => 'BackupServerUi Three',
     'name' => 'Name',
     'started_at' => 'Started at',
-    'failed' => 'failed',
+    'failed' => 'Failed',
+    'completed' => 'Completed',
+    'pending' => 'Pending',
 ];

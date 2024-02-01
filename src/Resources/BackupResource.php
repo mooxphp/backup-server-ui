@@ -178,51 +178,58 @@ class BackupResource extends Resource
             ->poll('60s')
             ->columns([
                 Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
                     ->toggleable()
-                    ->searchable(true, null, true)
-                    ->limit(50),
+                    ->searchable()
+                    ->limit(50)
+                    ->badge()
+                    ->sortable()
+                    ->formatStateUsing(fn (string $state): string => __("backup-server-ui::translations.{$state}"))
+                    ->color(fn (string $state): string => match ($state) {
+                        'completed' => 'success',
+                        'failed' => 'danger',
+                        'pending' => 'warning',
+                        default => 'secondary',
+                    }),
                 Tables\Columns\TextColumn::make('source.name')
-                    ->toggleable()
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('destination.name')
-                    ->toggleable()
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('disk_name')
-                    ->toggleable()
-                    ->searchable(true, null, true)
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('path')
-                    ->toggleable()
-                    ->searchable(true, null, true)
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('size_in_kb')
-                    ->toggleable()
-                    ->searchable(true, null, true)
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('real_size_in_kb')
-                    ->toggleable()
-                    ->searchable(true, null, true)
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('completed_at')
-                    ->toggleable()
-                    ->date(),
-                Tables\Columns\TextColumn::make('rsync_summary')
+                    ->label('Source')
                     ->toggleable()
                     ->searchable()
                     ->limit(50),
+                Tables\Columns\TextColumn::make('destination.name')
+                    ->label('Destination')
+                    ->toggleable()
+                    ->searchable()
+                    ->limit(50),
+                Tables\Columns\TextColumn::make('disk_name')
+                    ->label('Disk')
+                    ->toggleable()
+                    ->searchable()
+                    ->limit(50),
+                Tables\Columns\TextColumn::make('path')
+                    ->label('Path')
+                    ->toggleable()
+                    ->searchable()
+                    ->limit(50),
+                Tables\Columns\TextColumn::make('size_in_kb')
+                    ->label('Size')
+                    ->toggleable()
+                    ->limit(50),
+                Tables\Columns\TextColumn::make('real_size_in_kb')
+                    ->label('Real Size')
+                    ->toggleable()
+                    ->limit(50),
+                Tables\Columns\TextColumn::make('completed_at')
+                    ->label('Completed')
+                    ->toggleable()
+                    ->date(),
                 Tables\Columns\TextColumn::make('rsync_time_in_seconds')
+                    ->label('Rsync Time')
                     ->toggleable()
-                    ->searchable(true, null, true)
                     ->limit(50),
-                Tables\Columns\TextColumn::make('rsync_current_transfer_speed')
+                Tables\Columns\TextColumn::make('rsync_average_transfer_speed_in_MB_per_second')
+                    ->label('Rsync Speed')
                     ->toggleable()
-                    ->searchable(true, null, true)
-                    ->limit(50),
-                Tables\Columns\TextColumn::make(
-                    'rsync_average_transfer_speed_in_MB_per_second'
-                )
-                    ->toggleable()
-                    ->searchable(true, null, true)
                     ->limit(50),
             ])
             ->filters([

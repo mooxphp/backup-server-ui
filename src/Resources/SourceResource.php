@@ -9,10 +9,11 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Moox\BackupServerUi\Resources\SourceResource\Pages;
@@ -276,74 +277,64 @@ class SourceResource extends Resource
         return $table
             ->poll('60s')
             ->columns([
-                Tables\Columns\TextColumn::make('status')
+                IconColumn::make('status')
+                    ->icon(fn (string $state): string => match ($state) {
+                        '' => 'heroicon-o-question-mark-circle',
+                        'active' => 'heroicon-o-play',
+                        'deleting' => 'heroicon-o-trash',
+                    })
+                    ->colors([
+                        'secondary',
+                        'warning' => 'deleting',
+                        'success' => 'active',
+                    ]),
+                IconColumn::make('healthy')
+                    ->icon(fn (string $state): string => match ($state) {
+                        '' => 'heroicon-o-x-circle',
+                        '0' => 'heroicon-o-x-circle',
+                        '1' => 'heroicon-o-check-circle',
+                    }),
+                TextColumn::make('name')
                     ->toggleable()
-                    ->searchable(true, null, true)
+                    ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('healthy')
+                TextColumn::make('host')
                     ->toggleable()
-                    ->searchable(true, null, true)
+                    ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('ssh_user')
+                    ->label('SSH User')
                     ->toggleable()
-                    ->searchable(true, null, true)
+                    ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('host')
-                    ->toggleable()
-                    ->searchable(true, null, true)
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('ssh_user')
-                    ->toggleable()
-                    ->searchable(true, null, true)
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('ssh_port')
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make('ssh_private_key_file')
-                    ->toggleable()
-                    ->searchable(true, null, true)
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('cron_expression')
-                    ->toggleable()
-                    ->searchable(true, null, true)
-                    ->limit(50),
-                Tables\Columns\TextColumn::make('destination.name')
+                TextColumn::make('destination.name')
                     ->toggleable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('cleanup_strategy_class')
+                TextColumn::make('cron_expression')
+                    ->label('Cron')
                     ->toggleable()
-                    ->searchable(true, null, true)
+                    ->searchable()
                     ->limit(50),
-                Tables\Columns\TextColumn::make('keep_all_backups_for_days')
+                TextColumn::make('cleanup_strategy_class')
+                    ->label('Cleanup')
                     ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make('keep_daily_backups_for_days')
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make('keep_weekly_backups_for_weeks')
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make(
-                    'keep_monthly_backups_for_months'
-                )
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make('keep_yearly_backups_for_years')
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make(
-                    'delete_oldest_backups_when_using_more_megabytes_than'
-                )
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make(
-                    'healthy_maximum_backup_age_in_days'
-                )
-                    ->toggleable()
-                    ->searchable(true, null, true),
-                Tables\Columns\TextColumn::make('healthy_maximum_storage_in_mb')
-                    ->toggleable()
-                    ->searchable(true, null, true),
+                    ->searchable()
+                    ->limit(50),
+                TextColumn::make('keep_all_backups_for_days')
+                    ->label('Keep all')
+                    ->toggleable(),
+                TextColumn::make('keep_daily_backups_for_days')
+                    ->label('Keep days')
+                    ->toggleable(),
+                TextColumn::make('keep_weekly_backups_for_weeks')
+                    ->label('Keep weeks')
+                    ->toggleable(),
+                TextColumn::make('keep_monthly_backups_for_months')
+                    ->label('Keep months')
+                    ->toggleable(),
+                TextColumn::make('keep_yearly_backups_for_years')
+                    ->label('Keep years')
+                    ->toggleable(),
             ])
             ->filters([
                 SelectFilter::make('destination_id')
