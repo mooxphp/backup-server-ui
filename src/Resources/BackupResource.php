@@ -223,14 +223,6 @@ class BackupResource extends Resource
                     ->label('Completed')
                     ->toggleable()
                     ->date(),
-                TextColumn::make('rsync_time_in_seconds')
-                    ->label('Rsync Time')
-                    ->toggleable()
-                    ->limit(50),
-                TextColumn::make('rsync_average_transfer_speed_in_MB_per_second')
-                    ->label('Rsync Speed')
-                    ->toggleable()
-                    ->limit(50),
             ])
             ->filters([
 
