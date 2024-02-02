@@ -3,6 +3,7 @@
 namespace Moox\BackupServerUi\Resources;
 
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -10,7 +11,6 @@ use Filament\Resources\Resource;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Moox\BackupServerUi\Resources\DestinationResource\Pages;
@@ -38,15 +38,9 @@ class DestinationResource extends Resource
         return $form->schema([
             Section::make()->schema([
                 Grid::make(['default' => 0])->schema([
-                    TextInput::make('status')
-                        ->rules(['max:255', 'string'])
+                    Hidden::make('status')
                         ->required()
-                        ->placeholder('Status')
-                        ->columnSpan([
-                            'default' => 12,
-                            'md' => 12,
-                            'lg' => 12,
-                        ]),
+                        ->default('active'),
 
                     TextInput::make('name')
                         ->rules(['max:255', 'string'])
@@ -197,17 +191,6 @@ class DestinationResource extends Resource
         return $table
             ->poll('60s')
             ->columns([
-                IconColumn::make('status')
-                    ->icon(fn (string $state): string => match ($state) {
-                        '' => 'heroicon-o-question-mark-circle',
-                        'active' => 'heroicon-o-hand-thumb-up',
-                        'deleting' => 'heroicon-o-trash',
-                    })
-                    ->colors([
-                        'secondary',
-                        'warning' => 'deleting',
-                        'success' => 'active',
-                    ]),
                 TextColumn::make('name')
                     ->label('Destination')
                     ->toggleable()

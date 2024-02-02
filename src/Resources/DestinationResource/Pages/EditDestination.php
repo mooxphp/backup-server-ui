@@ -14,4 +14,13 @@ class EditDestination extends EditRecord
     {
         return [DeleteAction::make()];
     }
+
+    public function getTitle(): string
+    {
+        if (filled(static::$title)) {
+            return static::$title;
+        }
+
+        return 'Edit '.$this->getRecordTitle().' destination';
+    }
 }

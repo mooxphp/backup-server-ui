@@ -30,6 +30,8 @@ class BackupLogItemResource extends Resource
 
     protected static ?string $navigationGroup = 'Backup server';
 
+    protected static ?string $recordTitleAttribute = 'Log Entry';
+
     protected static ?int $priority = 4;
 
     public static function form(Form $form): Form

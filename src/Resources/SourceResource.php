@@ -3,6 +3,7 @@
 namespace Moox\BackupServerUi\Resources;
 
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -41,25 +42,13 @@ class SourceResource extends Resource
         return $form->schema([
             Section::make()->schema([
                 Grid::make(['default' => 0])->schema([
-                    TextInput::make('status')
-                        ->rules(['max:255', 'string'])
+                    Hidden::make('status')
                         ->required()
-                        ->placeholder('Status')
-                        ->columnSpan([
-                            'default' => 12,
-                            'md' => 12,
-                            'lg' => 12,
-                        ]),
+                        ->default('active'),
 
-                    TextInput::make('healthy')
-                        ->rules(['max:255'])
+                    Hidden::make('healthy')
                         ->required()
-                        ->placeholder('Healthy')
-                        ->columnSpan([
-                            'default' => 12,
-                            'md' => 12,
-                            'lg' => 12,
-                        ]),
+                        ->default('2'),
 
                     TextInput::make('name')
                         ->rules(['max:255', 'string'])
@@ -122,6 +111,19 @@ class SourceResource extends Resource
                             'lg' => 12,
                         ]),
 
+                    Select::make('destination_id')
+                        ->rules(['exists:backup_server_destinations,id'])
+                        ->relationship('destination', 'name')
+                        ->searchable()
+                        ->preload()
+                        ->required()
+                        ->placeholder('Destination')
+                        ->columnSpan([
+                            'default' => 12,
+                            'md' => 12,
+                            'lg' => 12,
+                        ]),
+
                     KeyValue::make('pre_backup_commands')
                         ->nullable()
                         ->columnSpan([
@@ -148,18 +150,6 @@ class SourceResource extends Resource
 
                     KeyValue::make('excludes')
                         ->nullable()
-                        ->columnSpan([
-                            'default' => 12,
-                            'md' => 12,
-                            'lg' => 12,
-                        ]),
-
-                    Select::make('destination_id')
-                        ->rules(['exists:backup_server_destinations,id'])
-                        ->nullable()
-                        ->relationship('destination', 'name')
-                        ->searchable()
-                        ->placeholder('Destination')
                         ->columnSpan([
                             'default' => 12,
                             'md' => 12,
@@ -277,23 +267,7 @@ class SourceResource extends Resource
         return $table
             ->poll('60s')
             ->columns([
-                IconColumn::make('status')
-                    ->icon(fn (string $state): string => match ($state) {
-                        '' => 'heroicon-o-question-mark-circle',
-                        'active' => 'heroicon-o-hand-thumb-up',
-                        'deleting' => 'heroicon-o-trash',
-                    })
-                    ->colors([
-                        'secondary',
-                        'warning' => 'deleting',
-                        'success' => 'active',
-                    ]),
-                IconColumn::make('healthy')
-                    ->icon(fn (string $state): string => match ($state) {
-                        '' => 'heroicon-o-x-circle',
-                        '0' => 'heroicon-o-x-circle',
-                        '1' => 'heroicon-o-check-circle',
-                    }),
+                IconColumn::make('healthy'),
                 TextColumn::make('name')
                     ->toggleable()
                     ->searchable()
