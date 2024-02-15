@@ -176,6 +176,7 @@ class BackupResource extends Resource
     {
         return $table
             ->poll('60s')
+            ->defaultSort('completed_at', 'desc')
             ->columns([
                 TextColumn::make('status')
                     ->label('Status')
@@ -195,34 +196,41 @@ class BackupResource extends Resource
                     ->label('Source')
                     ->toggleable()
                     ->searchable()
+                    ->sortable()
                     ->limit(50),
                 TextColumn::make('destination.name')
                     ->label('Destination')
                     ->toggleable()
                     ->searchable()
+                    ->sortable()
                     ->limit(50),
                 TextColumn::make('disk_name')
                     ->label('Disk')
                     ->toggleable()
                     ->searchable()
+                    ->sortable()
                     ->limit(50),
                 TextColumn::make('path')
                     ->label('Path')
                     ->toggleable()
                     ->searchable()
+                    ->sortable()
                     ->limit(50),
                 TextColumn::make('size_in_kb')
                     ->label('Size')
                     ->toggleable()
+                    ->sortable()
                     ->limit(50),
                 TextColumn::make('real_size_in_kb')
                     ->label('Real Size')
                     ->toggleable()
+                    ->sortable()
                     ->limit(50),
                 TextColumn::make('completed_at')
                     ->label('Completed')
                     ->toggleable()
-                    ->date(),
+                    ->sortable()
+                    ->since(),
             ])
             ->filters([
 
