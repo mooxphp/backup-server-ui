@@ -2,7 +2,7 @@
 
 namespace Moox\BackupServerUi\Resources;
 
-use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
@@ -114,8 +114,8 @@ class BackupResource extends Resource
                             'lg' => 12,
                         ]),
 
-                    DatePicker::make('completed_at')
-                        ->rules(['date'])
+                    DateTimePicker::make('completed_at')
+                        ->seconds(false)
                         ->nullable()
                         ->placeholder('Completed At')
                         ->columnSpan([
