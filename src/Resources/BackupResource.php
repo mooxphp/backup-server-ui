@@ -11,7 +11,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -246,14 +245,14 @@ class BackupResource extends Resource
                     ->multiple()
                     ->label('Destination'),
             ])
-            ->actions([ViewAction::make(), EditAction::make()])
+            ->actions([ViewAction::make()])
             ->bulkActions([DeleteBulkAction::make()]);
     }
 
     public static function getRelations(): array
     {
         return [
-            // BackupLogItemsRelationManager::class,
+            // Todo: BackupLogItemsRelationManager::class,
         ];
     }
 
@@ -261,9 +260,7 @@ class BackupResource extends Resource
     {
         return [
             'index' => Pages\ListBackups::route('/'),
-            'create' => Pages\CreateBackup::route('/create'),
             'view' => Pages\ViewBackup::route('/{record}'),
-            'edit' => Pages\EditBackup::route('/{record}/edit'),
         ];
     }
 }
