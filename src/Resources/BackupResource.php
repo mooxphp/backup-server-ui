@@ -175,7 +175,7 @@ class BackupResource extends Resource
     {
         return $table
             ->poll('60s')
-            ->defaultSort('completed_at', 'desc')
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('status')
                     ->label('Status')
@@ -225,6 +225,11 @@ class BackupResource extends Resource
                     ->toggleable()
                     ->sortable()
                     ->limit(50),
+                TextColumn::make('created_at')
+                    ->label('Created')
+                    ->toggleable()
+                    ->sortable()
+                    ->since(),
                 TextColumn::make('completed_at')
                     ->label('Completed')
                     ->toggleable()
