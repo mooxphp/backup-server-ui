@@ -157,7 +157,12 @@ class BackupLogItemResource extends Resource
                 TextColumn::make('message')
                     ->toggleable()
                     ->searchable()
-                    ->limit(50),
+                    ->limit(30),
+                TextColumn::make('created_at')
+                    ->label('Created')
+                    ->toggleable()
+                    ->sortable()
+                    ->since(),
             ])
             ->filters([
                 SelectFilter::make('source_id')

@@ -209,12 +209,6 @@ class BackupResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->limit(50),
-                TextColumn::make('path')
-                    ->label('Path')
-                    ->toggleable()
-                    ->searchable()
-                    ->sortable()
-                    ->limit(50),
                 TextColumn::make('size_in_kb')
                     ->label('Size')
                     ->toggleable()
