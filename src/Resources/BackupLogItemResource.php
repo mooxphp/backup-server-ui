@@ -158,7 +158,7 @@ class BackupLogItemResource extends Resource
                 TextColumn::make('message')
                     ->toggleable()
                     ->searchable()
-                    ->limit(30),
+                    ->limit(25),
                 TextColumn::make('created_at')
                     ->label('Created')
                     ->toggleable()
