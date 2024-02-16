@@ -111,6 +111,7 @@ class BackupLogItemResource extends Resource
     {
         return $table
             ->poll('60s')
+            ->defaultSort('created_at', 'desc')
             ->columns([
                 IconColumn::make('backup.status')
                     ->label('Status')
