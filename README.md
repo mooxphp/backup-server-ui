@@ -1,8 +1,8 @@
-![Moox BackupServerUi](https://github.com/mooxphp/moox/raw/main/_other/art/banner/backup-server-ui.jpg)
+![Moox BackupServerUi](https://github.com/mooxphp/moox/raw/main/art/banner/backup-server-ui.jpg)
 
-# Moox BackupServerUi
+# Moox Backup Server UI
 
-Filament UI for Spatie Laravel Backup Server. Needs a license key for the paid package from https://spatie.be.
+Filament UI for Spatie Laravel Backup Server. Needs a license key for the paid package from [https://spatie.be](https://spatie.be/products/laravel-backup-server).
 
 ## Quick Installation
 
@@ -19,7 +19,7 @@ Curious what the install command does? See manual installation below.
 
 <!--whatdoes-->
 
-Filament UI for Spatie Laravel Backup Server.
+Filament UI for Spatie Laravel Backup Server. Create automated or make manual incremental backups. More information and screenshots will follow.
 
 <!--/whatdoes-->
 
