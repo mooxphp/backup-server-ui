@@ -210,11 +210,17 @@ class BackupResource extends Resource
                     ->sortable()
                     ->limit(50),
                 TextColumn::make('size_in_kb')
+                    ->state(function (Backup $record): ?string {
+                        return ReadableSize($record->size_in_kb * 1024);
+                    })
                     ->label('Size')
                     ->toggleable()
                     ->sortable()
                     ->limit(50),
                 TextColumn::make('real_size_in_kb')
+                    ->state(function (Backup $record): ?string {
+                        return ReadableSize($record->real_size_in_kb * 1024);
+                    })
                     ->label('Real Size')
                     ->toggleable()
                     ->sortable()
