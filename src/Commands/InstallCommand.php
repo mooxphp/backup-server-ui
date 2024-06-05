@@ -77,7 +77,7 @@ class InstallCommand extends Command
     {
         note('Registering the Filament Resources...');
 
-        $providerPath = app_path('Providers/Filament/AdminPanelProvider.php');
+        $providerPath = $this->getPanelProviderPath();
 
         if (File::exists($providerPath)) {
 
@@ -133,8 +133,32 @@ class InstallCommand extends Command
         }
     }
 
+    public function getPanelProviderPath(): string
+    {
+        $providerPath = app_path('Providers\Filament');
+        $providers = File::allFiles($providerPath);
+        if(count($providers)>1){
+            $providerNames = [];
+            foreach ($providers as $provider) {
+                $providerNames[] = $provider->getBasename();
+            }
+            $providerPath .= '/'.$this->choice(
+                'Which Panel should it be registered',
+                [...$providerNames]
+            );
+        }
+        if(count($providers) == 1){
+            $providerPath .= '/'.$providers[0]->getBasename();
+        }
+
+        return $providerPath;
+
+    }
+
     public function finish(): void
     {
         note('Moox BackupServerUi installed successfully. Enjoy!');
     }
+
+
 }
