@@ -137,7 +137,7 @@ class InstallCommand extends Command
     {
         $providerPath = app_path('Providers\Filament');
         $providers = File::allFiles($providerPath);
-        if(count($providers)>1){
+        if (count($providers) > 1) {
             $providerNames = [];
             foreach ($providers as $provider) {
                 $providerNames[] = $provider->getBasename();
@@ -147,7 +147,7 @@ class InstallCommand extends Command
                 [...$providerNames]
             );
         }
-        if(count($providers) == 1){
+        if (count($providers) == 1) {
             $providerPath .= '/'.$providers[0]->getBasename();
         }
 
@@ -159,6 +159,4 @@ class InstallCommand extends Command
     {
         note('Moox BackupServerUi installed successfully. Enjoy!');
     }
-
-
 }
