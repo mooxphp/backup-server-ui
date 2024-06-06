@@ -67,7 +67,7 @@ Set the ssh User
 
 Ssh Port should be 22
 
-Copy your ssh key path (~/.ssh/id_rsa)
+Copy ssh key path from source server (in case of forge: "~/.ssh/id_rsa")
 
 The ssh user to get into the source server
 
