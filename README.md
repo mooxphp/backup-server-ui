@@ -41,11 +41,12 @@ php artisan vendor:publish --tag="backup-server-ui-config"
 ## SSH Connection
 
 ### Create ssh connection to your source server
-Open your Command Line and type 
-``` ssh forge@your-address ```
-continue with the given instructions.
+Add SSH key to your server. Once your key is added shh into your instance.
 
-### Add ssh key to your destination server
+For Forge users:
+Open your Command Line and type ``` ssh forge@your-address ```.
+
+### Add source server ssh key to your destination server
 Copy the public key from your source server and add it to your destination server.
 Connect destination and source server.
 Confirm fingerprinting from destination server. 
