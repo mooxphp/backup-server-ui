@@ -81,6 +81,8 @@ To create a MYSQL Backup u need to cd in your folder and create a backup. Each v
 | -------- | ------- |
 | 0  | cd /home/forge/yourplatform.com/    |
 | 1 | mysqldump DATABASE  -uUSERNAME -pPASSWORD > dump.sql    |
+only change DATABASE USERNAME AND PASSWORD
+
 
 Post_backup_commands: 
 Now do everything that should be executed after a backup. In this case we want to remove the dump from server.
@@ -89,10 +91,11 @@ Now do everything that should be executed after a backup. In this case we want t
 | 0  | cd /home/forge/yourplatform.com/    |
 | 1 | rm -f dump.sql   |
 
+
 Includes: specify a include path 
 | Key    | Value |
 | -------- | ------- |
-| 0  | cd /home/forge/yourplatform.com/    |
+| 0  |/home/forge/yourplatform.com/    |
 
 To exlude paths you should give paths relative to the paths given in includes
 
