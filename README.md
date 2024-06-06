@@ -80,7 +80,7 @@ To create a MYSQL Backup u need to cd in your folder and create a backup. Each v
 | Key    | Value |
 | -------- | ------- |
 | 0  | cd /home/forge/yourplatform.com/    |
-| 1 | mysqldump <database>  -u<username> -p<password> > dump.sql    |
+| 1 | mysqldump DATABASE  -uUSERNAME -pPASSWORD > dump.sql    |
 
 Post_backup_commands: 
 Now do everything that should be executed after a backup. In this case we want to remove the dump from server.
