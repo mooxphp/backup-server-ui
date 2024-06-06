@@ -71,7 +71,7 @@ Copy your ssh key path (~/.ssh/id_rsa)
 
 The ssh user to get into the source server
 
-Cron expression when to start a backup [Cron Help](https://crontab.guru/)
+Cron expression when to start a backup [(Cron Help)](https://crontab.guru/)
 
 Choose a given destination
 
