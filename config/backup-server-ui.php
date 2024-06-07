@@ -4,8 +4,7 @@ return [
     'backup_source' => [
         'inline_help' => [
             'fields' => [
-                'name' =>
-                [
+                'name' => [
                     'title' => '',
                     'url' => '',
                 ],
@@ -45,7 +44,7 @@ return [
                     'title' => '',
                     'url' => 'includes',
                 ],
-                'excludes' =>  [
+                'excludes' => [
                     'title' => '',
                     'url' => '',
                 ],
@@ -53,35 +52,35 @@ return [
                     'title' => '',
                     'url' => '',
                 ],
-                'keep_all_backups_for_days' =>  [
+                'keep_all_backups_for_days' => [
                     'title' => '',
                     'url' => '',
                 ],
-                'keep_daily_backups_for_days' =>  [
+                'keep_daily_backups_for_days' => [
                     'title' => '',
                     'url' => '',
                 ],
-                'keep_weekly_backups_for_weeks' =>  [
+                'keep_weekly_backups_for_weeks' => [
                     'title' => '',
                     'url' => '',
                 ],
-                'keep_monthly_backups_for_months' =>  [
+                'keep_monthly_backups_for_months' => [
                     'title' => '',
                     'url' => '',
                 ],
-                'keep_yearly_backups_for_years' =>  [
+                'keep_yearly_backups_for_years' => [
                     'title' => '',
                     'url' => '',
                 ],
-                'delete_oldest_backups_when_using_more_megabytes_than' =>  [
+                'delete_oldest_backups_when_using_more_megabytes_than' => [
                     'title' => '',
                     'url' => '',
                 ],
-                'healthy_maximum_backup_age_in_days' =>  [
+                'healthy_maximum_backup_age_in_days' => [
                     'title' => '',
                     'url' => 'url',
                 ],
-                'healthy_maximum_storage_in_mb' =>  [
+                'healthy_maximum_storage_in_mb' => [
                     'title' => '',
                     'url' => '',
                 ],
