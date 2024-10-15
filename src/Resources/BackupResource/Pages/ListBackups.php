@@ -69,7 +69,7 @@ class ListBackups extends ListRecords
         };
         */
 
-        (new CreateBackupAction())
+        (new CreateBackupAction)
             ->doNotUseQueue()
             //->afterBackupModelCreated($writeLogItemsToConsole)
             ->execute($source);
